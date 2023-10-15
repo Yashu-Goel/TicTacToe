@@ -1,7 +1,45 @@
-.HomeOuter{
-    background-image: url("../Assets/Background.png");
-    height: 100vh;
-    background-size: cover;
+@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+.HomeOuterContainer {
+  background-image: url("../Assets/Background.png");
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.XImage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 15rem;
+}
+.OImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: rotate(180deg);
+  height: 15rem;
+}
+.HomeInnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.HomeButtons button {
+  padding: 1rem 2rem;
+  margin: 5px;
+  border-radius: 5px;
+  border: 2px solid #1e00ff;
+background: rgb(30,0,255);
+background: linear-gradient(90deg, rgba(30,0,255,1) 33%, rgba(213,0,255,1) 100%);
+  color: white;
+  cursor: pointer;
+  font-family: 'Sigmar One', sans-serif;
+
+  font-size: 1.4rem;
+  color: white;
+}
+
 /* Use Color Code: #1e00ff (Blue)
 #d500ff(Pink) */

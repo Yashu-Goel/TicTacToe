@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Home.css";
-
+import X from "../Assets/X.png"
+import O from "../Assets/O.png"
+import Star from "../Assets/Star.png"
 const Home = () => {
   const [uniqueCode, setUniqueCode] = useState("");
 
@@ -28,6 +30,8 @@ const Home = () => {
 
   return (
     <div className="HomeOuterContainer">
+      <img className="XImage" src={X} />
+      <img className="OImage" src={O} />
       <div className="HomeInnerContainer">
         <div className="HomeButtons">
           <button onClick={handlePlayWithRandom}>
