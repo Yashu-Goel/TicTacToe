@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import "./Home.css";
 
 const Home = () => {
   const [uniqueCode, setUniqueCode] = useState("");
 
   const generateUniqueCode = () => {
     const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      "0123456789";
     const codeLength = 6;
 
     let generatedCode = "";
@@ -17,10 +18,27 @@ const Home = () => {
     setUniqueCode(generatedCode);
   };
 
+  const handlePlayWithRandom = () => {
+    console.log("Playing with a random person");
+  };
+
+  const handlePlayWithFriend = () => {
+    generateUniqueCode();
+  };
+
   return (
-    <div>
-      <div>Generated Code: {uniqueCode}</div>
-      <button onClick={generateUniqueCode}>Generate Code</button>
+    <div className="HomeOuterContainer">
+      <div className="HomeInnerContainer">
+        <div className="HomeButtons">
+          <button onClick={handlePlayWithRandom}>
+            Play with Random Person
+          </button>
+        </div>
+        <div className="HomeButtons">
+          <button onClick={handlePlayWithFriend}>Play with Friend</button>
+          {uniqueCode && <p>Your Unique Code: {uniqueCode}</p>}
+        </div>
+      </div>
     </div>
   );
 };
