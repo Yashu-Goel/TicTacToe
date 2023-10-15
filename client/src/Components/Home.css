@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap");
 .HomeOuterContainer {
   background-image: url("../Assets/Background.png");
   height: 100vh;
@@ -28,17 +28,22 @@
 }
 .HomeButtons button {
   padding: 1rem 2rem;
-  margin: 5px;
-  border-radius: 5px;
+  margin: 10px;
+  border-radius: 10px;
   border: 2px solid #1e00ff;
-background: rgb(30,0,255);
-background: linear-gradient(90deg, rgba(30,0,255,1) 33%, rgba(213,0,255,1) 100%);
+  background: rgb(30, 0, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(30, 0, 255, 1) 33%,
+    rgba(213, 0, 255, 1) 100%
+  );
   color: white;
   cursor: pointer;
-  font-family: 'Sigmar One', sans-serif;
+  font-family: "Sigmar One", sans-serif;
 
   font-size: 1.4rem;
   color: white;
+  border: 5px solid white;
 }
 
 /* Use Color Code: #1e00ff (Blue)
