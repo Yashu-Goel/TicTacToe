@@ -13,6 +13,8 @@
   left: 0;
   height: 15rem;
   z-index: 5;
+    opacity: 0.7;
+
 }
 .OImage {
   position: absolute;
@@ -21,6 +23,7 @@
   transform: rotate(180deg);
   height: 15rem;
   z-index: 5;
+  opacity: 0.7;
 }
 .HomeInnerContainer {
   position: absolute;
@@ -53,6 +56,21 @@
   text-align: center;
   color: black;
   font-weight: bold;
+}
+.HomeButtons input {
+  padding: 0.8rem 1.5rem;
+  margin: 10px;
+  border-radius: 10px;
+  border: 2px solid #1e00ff;
+  font-family: "Sigmar One", sans-serif;
+  font-size: 1rem;
+  color: #1e00ff;
+}
+.InputContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 /* Use Color Code: #1e00ff (Blue)
 #d500ff(Pink) */
