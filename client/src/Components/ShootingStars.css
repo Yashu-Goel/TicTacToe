@@ -1,10 +1,8 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body{
-    overflow: hidden;
+.shooting-stars-container {
+  position: relative; 
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; 
 }
 .ShootingInner{
     position: absolute;
@@ -145,6 +143,15 @@ body{
     animation-duration: 2.25s;
 }
 
+@media (max-width: 768px) {
+  .ShootingSpan {
+    width: 2px; 
+    height: 2px; 
+  }
 
+  .ShootingSpan::before {
+    width: 75px; 
+  }
+}
 
 
