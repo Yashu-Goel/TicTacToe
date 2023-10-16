@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Home.css";
 import X from "../Assets/X.png"
 import O from "../Assets/O.png"
-import Star from "../Assets/Star.png"
 const Home = () => {
   const [uniqueCode, setUniqueCode] = useState("");
 
