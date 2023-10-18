@@ -18,12 +18,18 @@ const Home = () => {
     const playWithRandomButton = document.getElementById(
       "playWithRandomButton"
     );
-
-    if (playWithRandomButton.innerText === "Create Room") {
+    
+    if (playWithRandomButton.innerText === "Play with Random Person") {
       console.log("YO bro");
-      setShowInput(true);
-      setShowEnterRoom(false); 
+      navigate("/find_friends");
+      // setShowInput(true);
+      // setShowEnterRoom(false);
     }
+    // if (playWithRandomButton.innerText === "Create Room") {
+    //   console.log("YO bro");
+    //   setShowInput(true);
+    //   setShowEnterRoom(false); 
+    // }
   };
 
   const handlePlayWithFriend = () => {
@@ -33,8 +39,7 @@ const Home = () => {
     const playWithFriendButton = document.getElementById(
       "playWithFriendButton"
     );
-
-    if (playWithRandomButton.innerText === "Play with Random Person") {
+    if (playWithFriendButton.innerText === "Play with Friend") {
       playWithRandomButton.innerText = "Create Room";
       playWithFriendButton.innerText = "Enter Room";
       setShowInput(false);
