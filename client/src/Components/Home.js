@@ -3,6 +3,7 @@ import "./Home.css";
 import X from "../Assets/X.png";
 import O from "../Assets/O.png";
 import ShootingStars from "./ShootingStars";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [friendId, setFriendId] = useState("");
@@ -12,8 +13,7 @@ const Home = () => {
   const [showEnterRoomInput, setShowEnterRoomInput] = useState(false);
   const [showEnterRoom, setShowEnterRoom] = useState(true);
   const [inputPlaceholder, setInputPlaceholder] = useState("Enter friend's ID");
-
-
+  const navigate = useNavigate();
   const handlePlayWithRandom = () => {
     const playWithRandomButton = document.getElementById(
       "playWithRandomButton"
@@ -57,7 +57,13 @@ const Home = () => {
 
     const handleFriendId = () =>{
       // do coding here
-      console.log('KKKK');
+      if(!friendId)
+      {
+        return;
+      }
+      console.log("KKKK");
+
+      navigate("/start_game")
     }
   return (
     <div className="HomeOuterContainer">
