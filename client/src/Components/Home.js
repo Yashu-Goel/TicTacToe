@@ -1,9 +1,12 @@
+// Home.js
 import React, { useState } from "react";
 import "./Home.css";
 import X from "../Assets/X.png";
 import O from "../Assets/O.png";
 import ShootingStars from "./ShootingStars";
 import { useNavigate } from "react-router-dom";
+import PlayButtons from "./PlayButton";
+import EnterName from "./EnterName";
 
 const Home = () => {
   const [friendId, setFriendId] = useState("");
@@ -14,117 +17,76 @@ const Home = () => {
   const [showEnterRoom, setShowEnterRoom] = useState(true);
   const [inputPlaceholder, setInputPlaceholder] = useState("Enter friend's ID");
   const navigate = useNavigate();
+
   const handlePlayWithRandom = () => {
-    const playWithRandomButton = document.getElementById(
-      "playWithRandomButton"
-    );
-    
-    if (playWithRandomButton.innerText === "Play with Random Person") {
+    const playWithRandomButton = document.getElementById("playButton");
+    if (playWithRandomButton.classList.contains("random")) {
       console.log("YO bro");
       navigate("/find_friends");
       // setShowInput(true);
       // setShowEnterRoom(false);
     }
-    // if (playWithRandomButton.innerText === "Create Room") {
-    //   console.log("YO bro");
-    //   setShowInput(true);
-    //   setShowEnterRoom(false); 
-    // }
+    // Handle other conditions if needed
   };
 
-  const handlePlayWithFriend = () => {
-    const playWithRandomButton = document.getElementById(
-      "playWithRandomButton"
-    );
-    const playWithFriendButton = document.getElementById(
-      "playWithFriendButton"
-    );
-    if (playWithFriendButton.innerText === "Play with Friend") {
-      playWithRandomButton.innerText = "Create Room";
-      playWithFriendButton.innerText = "Enter Room";
-      setShowInput(false);
+  
+const handlePlayWithFriend = () => {
+  const playButton = document.getElementById("playButton");
+  console.log(playButton.classList.contains("room"));
+  if (playButton.classList.contains("friend")) {
+    playButton.classList.remove("friend");
+    playButton.classList.add("room");
+    setShowInput(false);
+    setShowEnterRoom(true);
+    console.log("ok");
+  } else if (playButton.classList.contains("room")) {
+    playButton.classList.remove("room");
+    playButton.classList.add("friend");
+    setShowEnterRoom(false);
+    setShowInput(true);
+    setInputPlaceholder("Enter Room Id");
+  }
+};
+
+  const handleSubmit = () => {
+    if (userName) {
       setShowEnterRoom(true);
-      console.log("ok");
-    } else if (playWithFriendButton.innerText === "Enter Room") {
-      console.log("okokok");
-      setShowEnterRoom(false);     
-      setShowInput(true);
-      setInputPlaceholder("Enter Room Id")
-   }
+      setUserNameInput(true);
+    }
   };
 
-    const handleSubmit = () => {
-      if (userName) {
-        setShowEnterRoom(true); 
-        setUserNameInput(true);
-      }
-    };
-
-    const handleFriendId = () =>{
-      // do coding here
-      if(!friendId)
-      {
-        return;
-      }
-      console.log("KKKK");
-
-      navigate("/start_game")
+  const handleFriendId = () => {
+    // do coding here
+    if (!friendId) {
+      return;
     }
+    console.log("KKKK");
+    navigate("/start_game");
+  };
+
   return (
     <div className="HomeOuterContainer">
-      <img className="XImage" src={X} />
-      <img className="OImage" src={O} />
+      <img className="XImage" src={X} alt="X" />
+      <img className="OImage" src={O} alt="O" />
       <div className="HomeInnerContainer">
-        <div className="HomeButtons">
-          {!userNameInput && (
-            <div className="InputContainer">
-              <div>
-                <input
-                  type="text"
-                  value={userName}
-                  onChange={(e) => {
-                    setUserName(e.target.value);
-                  }}
-                  placeholder="Enter your name"
-                />
-              </div>
-              <div>
-                <button onClick={handleSubmit}>Submit Name</button>
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="HomeButtons">
-          {showEnterRoom && userNameInput && (
-            <button id="playWithRandomButton" onClick={handlePlayWithRandom}>
-              Play with Random Person
-            </button>
-          )}
-
-          {showInput && (
-            <div className="InputContainer">
-              <div>
-                <input
-                  id="inputContainer"
-                  type="text"
-                  value={friendId}
-                  onChange={(e) => setFriendId(e.target.value)}
-                  placeholder={inputPlaceholder}
-                />
-              </div>
-              <div>
-                <button onClick={handleFriendId}>Submit</button>
-              </div>
-            </div>
-          )}
-        </div>
-        <div className="HomeButtons">
-          {showEnterRoom && userNameInput && (
-            <button id="playWithFriendButton" onClick={handlePlayWithFriend}>
-              Play with Friend
-            </button>
-          )}
-        </div>
+        <EnterName
+          userName={userName}
+          setUserName={setUserName}
+          userNameInput={userNameInput}
+          setUserNameInput={setUserNameInput}
+          handleSubmit={handleSubmit}
+        />
+        <PlayButtons
+          showEnterRoom={showEnterRoom}
+          userNameInput={userNameInput}
+          showInput={showInput}
+          inputPlaceholder={inputPlaceholder}
+          friendId={friendId}
+          setFriendId={setFriendId}
+          handlePlayWithRandom={handlePlayWithRandom}
+          handlePlayWithFriend={handlePlayWithFriend}
+          handleFriendId={handleFriendId}
+        />
       </div>
       <ShootingStars />
     </div>
