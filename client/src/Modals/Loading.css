@@ -2,18 +2,39 @@
 
 .loading-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   background-image: url("../Assets/Background.png");
+  overflow-y: auto;
 }
 
 .loading-content {
-   position: absolute;
-   z-index: 5;
+  position: absolute;
+  z-index: 5;
   text-align: center;
   color: #000;
   font-family: "Sigmar One", sans-serif;
+}
+.friends-list > li {
+  display: flex;
+  margin: 10px 0px;
+  gap: 10px;
+}
+.fade{
+  z-index: 155555 !important;
+  opacity: 1;
+}
+.show{
+  z-index: 155555 !important;
+  
+}
+.modal{
+  z-index: 155555 !important;
+}
+.friends-list > li > p {
+  display: flex;
 }
 
 p {
@@ -23,7 +44,8 @@ p {
 
 /* Animation styles */
 @keyframes fadeInOut {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
   }
   50% {
@@ -32,7 +54,7 @@ p {
 }
 
 p::after {
-  content: '';
+  content: "";
   display: inline-block;
   animation: fadeInOut 1s infinite;
 }
