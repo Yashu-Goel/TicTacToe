@@ -22,6 +22,13 @@
   margin: 10px 0px;
   gap: 10px;
 }
+.UserIdBox
+{
+  position: absolute;
+  top: 0;
+  background-color: white;
+  font-size: 2rem;
+}
 .fade{
   z-index: 155555 !important;
   opacity: 1;
