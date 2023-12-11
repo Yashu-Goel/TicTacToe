@@ -25,6 +25,7 @@
 .fade{
   z-index: 155555 !important;
   opacity: 1;
+  background-color: #0000007a;
 }
 .show{
   z-index: 155555 !important;
