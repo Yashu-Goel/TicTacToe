@@ -22,23 +22,24 @@
   margin: 10px 0px;
   gap: 10px;
 }
-.UserIdBox
-{
+.UserIdBox {
   position: absolute;
   top: 0;
   background-color: white;
   font-size: 2rem;
 }
-.fade{
+.fade {
   z-index: 155555 !important;
   opacity: 1;
   background-color: #0000007a;
 }
-.show{
-  z-index: 155555 !important;
-  
+.modal-content {
+  margin-top: 20% !important;
 }
-.modal{
+.show {
+  z-index: 155555 !important;
+}
+.modal {
   z-index: 155555 !important;
 }
 .friends-list > li > p {

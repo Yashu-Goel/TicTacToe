@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import "./Loading.css";
 import ShootingStars from "../Components/ShootingStars";
@@ -14,7 +13,11 @@ const Loading = () => {
   const [IsConnected, setIsConnected] = useState(true);
   const [onlineFriends, setOnlineFriends] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [roomRequestModal, setRoomRequestModal] = useState(false);
+  const [roomCode, setRoomCode] = useState(null);
+  const [requesterId, setRequesterId] = useState(null);
 
+  const [oppo, setOppo] = useState(null);
   useEffect(() => {
     const interval = setInterval(() => {
       setDots((dots) => (dots < 3 ? dots + 1 : 0));
@@ -28,6 +31,14 @@ const Loading = () => {
     socket.on("updateLobby", (participants) => {
       setOnlineFriends(participants);
     });
+
+    const handleRoomRequest = (requestId, requester) => {
+      setRoomCode(requestId);
+      setRequesterId(requester);
+      setRoomRequestModal(true);
+    };
+
+    socket.on("room-request", handleRoomRequest);
 
     socket.emit("find-friends");
 
@@ -60,11 +71,8 @@ const Loading = () => {
       return;
     } else {
       setShowModal(true);
-      socket.emit("send-room-request", socket.id, opponent);
+      setOppo(opponent);
     }
-  };
-
-  const handleRequest = () => {
   };
 
   return (
@@ -73,7 +81,16 @@ const Loading = () => {
         <RequestModal
           show={showModal}
           onhide={() => setShowModal(false)}
-          onclick={handleRequest}
+          socket={socket}
+          oppoId={oppo}
+        />
+      )}
+      {roomRequestModal && (
+        <RequestModal
+          show={roomRequestModal}
+          onhide={() => setRoomRequestModal(false)}
+          roomId={roomCode}
+          requesterId={requesterId}
         />
       )}
       <div className="loading-container">
