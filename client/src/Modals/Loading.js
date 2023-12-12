@@ -54,12 +54,9 @@ const Loading = () => {
   };
 
   const handleCopyClick = () => {
-    console.log("OKOK");
-
-    if (!socket) {
+    if (!socket.connected) {
       toast.error("Please wait for the game to start");
     } else {
-      navigator.clipboard.writeText(socket.id);
       navigator.clipboard.writeText(socket.id);
       toast.success("Copied to clipboard");
     }
@@ -106,7 +103,7 @@ const Loading = () => {
                 </Badge>
               </Navbar.Text>
               <Navbar.Text>
-                <Button variant="outline-light" onClick={handleCopyClick}>
+                <Button className="CopyButton" variant="outline-light" onClick={handleCopyClick}>
                   Copy ID
                 </Button>
               </Navbar.Text>

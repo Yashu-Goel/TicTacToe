@@ -7,7 +7,9 @@
   justify-content: center;
   height: 100vh;
   background-image: url("../Assets/Background.png");
+  background-size: cover;
   overflow-y: auto;
+  
 }
 
 .loading-content {
@@ -27,7 +29,8 @@
   top: 0;
   background-color: white;
   font-size: 2rem;
-}
+  user-select: auto !important; 
+} 
 .fade {
   z-index: 155555 !important;
   opacity: 1;
@@ -50,7 +53,15 @@ p {
   font-size: 24px;
   margin: 0;
 }
-
+.CopyButton{
+  user-select: auto;
+  border: 2px solid red;
+}
+.CopyButton:hover{
+  background-color: black;
+  cursor: pointer;
+  
+}
 /* Animation styles */
 @keyframes fadeInOut {
   0%,
