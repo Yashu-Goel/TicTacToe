@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap");
 .RoomMainContainer {
   display: flex;
   flex-direction: column;
@@ -10,65 +10,71 @@
 
 .RoomCodeContainer {
   font-size: 5rem;
-  font-family: 'Open Sans', sans-serif;
-  background: linear-gradient(to right,#1400ff, #dc00ff);
+  font-family: "Open Sans", sans-serif;
+  background: linear-gradient(to right, #1400ff, #dc00ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-decoration: underline;
   margin-bottom: 3rem;
   position: relative;
 }
-.RoomCodeContainer:before{
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(to right, #1400ff, #dc00ff);
-    z-index: 1; 
-    border-radius: 5px;
+.RoomCodeContainer:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, #1400ff, #dc00ff);
+  z-index: 1;
+  border-radius: 5px;
 }
 
 .GridContainer {
-    width:90%;
-    max-width:40rem;
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    aspect-ratio: 1/1;
-    z-index: 10;
+  width: 90%;
+  max-width: 35rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  aspect-ratio: 1/1;
+  background-color: #0056b3;
+  z-index: 10;
 }
 
-.box{
-    background-color: #b6c1ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position:relative;
-    width:100%;
-    aspect-ratio: 1/1;
-    cursor: pointer ; 
-    font-size: 8rem;
-    color:white;
-    font-family: 'Open Sans', sans-serif;
+.box {
+  background-color: #b6c1ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  font-size: 4rem;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  border: 2px solid white;
 }
 
-
-.box1, .box2, .box4, .box5{
-    border-right:2px solid white;
-    border-bottom:2px solid white;
+/* .box1,
+.box2,
+.box4,
+.box5 {
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
 }
 
-.box3, .box6{
-    border-bottom: 2px solid white;
+.box3,
+.box6 {
+  border-bottom: 2px solid white;
 }
 
-.box7, .box8{
-    border-right:2px solid white;
-}
+.box7,
+.box8 {
+  border-right: 2px solid white;
+} */
 
 .PlayerText p {
   font-size: 2rem;
@@ -76,7 +82,7 @@
   margin-top: 2rem;
   text-transform: uppercase;
   padding: 0.5rem;
-  background: -webkit-linear-gradient(180deg,  #1400ff, #dc00ff);
+  background: -webkit-linear-gradient(180deg, #1400ff, #dc00ff);
   -webkit-background-clip: text;
   -webkit-text-stroke: 4px transparent;
   color: #b6c1ff;
@@ -87,4 +93,235 @@
     font-size: 3rem;
     margin-top: 5rem;
   }
+}
+
+/* from my sample code ui ... */
+.start-game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  gap: 10px;
+}
+.rightbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.leftBar {
+  position: relative;
+  width: 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  padding: 0px;
+}
+
+.start-game-form,
+.game-in-progress {
+  text-align: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 2px #ccc;
+  width: 300px;
+}
+
+input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+/* StartGame.css */
+
+.loader {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.game-board {
+  /* border: 2px solid #333; */
+  /* padding: 20px; */
+  border-radius: 8px;
+  /* background-color: #f0f0f0; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.player-info p {
+  padding: 0;
+  margin: 5px 0;
+}
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 5px;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  font-size: 24px;
+  background-color: #fff;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cell:hover {
+  background-color: #eee;
+}
+/* Add styles for "me" and "opponent" */
+.me {
+  color: #00f; /* Blue color for "me" */
+  font-weight: bold;
+  margin: 0;
+}
+
+.opponent {
+  color: #f00; /* Red color for "opponent" */
+  font-weight: normal;
+  margin: 0;
+}
+.game-result {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ffcc00;
+  border: 2px solid #f90;
+  border-radius: 8px;
+  color: #333;
+}
+/* Add styles for the game status */
+.game-status {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #f0f0f0;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #333;
+}
+/* Button styles */
+.leftBar button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 30px;
+  margin: 10px 0;
+  padding: 3px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  position: relative;
+  /* outline: 1px solid black; */
+}
+p.badge {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  border-radius: 50% 50%;
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  padding: 3px 6px;
+}
+
+.leftBar button:hover {
+  transform: scale(1.2);
+}
+
+/* Message popup styles */
+.messagePopup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #333;
+  padding: 10px;
+  display: none;
+  z-index: 1;
+}
+
+.messagePopup.active {
+  display: block;
+}
+
+/* Other styles for the popups can be added here */
+.player-info-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.player {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #555;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar.me {
+  border: 2px solid #58d8a3;
+}
+
+.name {
+  margin-left: 10px;
+  font-weight: 600;
+}
+
+.vs {
+  font-size: 1.2em;
+  margin: 0 1em;
+  font-weight: 800;
+  color: #999;
 }

@@ -5,8 +5,20 @@ import { Navbar, Badge, Button } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 import RequestModal from "./RequestModal";
+import RoomRequestModal from "./RoomRequestmodal";
 
 export const socket = io("http://localhost:5000");
+export function getCurrentTimeInIndianFormat() {
+  const options = {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+    timeZone: "Asia/Kolkata",
+    second: "numeric",
+  };
+  const indianTime = new Date(Date.now()).toLocaleString("en-US", options);
+  return indianTime;
+}
 
 const Loading = () => {
   const [dots, setDots] = useState(0);
@@ -83,7 +95,7 @@ const Loading = () => {
         />
       )}
       {roomRequestModal && (
-        <RequestModal
+        <RoomRequestModal
           show={roomRequestModal}
           onhide={() => setRoomRequestModal(false)}
           roomId={roomCode}
@@ -103,7 +115,11 @@ const Loading = () => {
                 </Badge>
               </Navbar.Text>
               <Navbar.Text>
-                <Button className="CopyButton" variant="outline-light" onClick={handleCopyClick}>
+                <Button
+                  className="CopyButton"
+                  variant="outline-light"
+                  onClick={handleCopyClick}
+                >
                   Copy ID
                 </Button>
               </Navbar.Text>

@@ -20,7 +20,7 @@ const RequestModal = ({ show, onhide, socket, oppoId }) => {
         setLoadingMessage("Waiting for response...");
       }, 2000);
       socket.on("req-accepted", (requestId, recipient) => {
-        toast.success(`Your request was accepted by ${recipient}... `);
+        // toast.success(`Your request was accepted by ${recipient}... `);
         return navigate(`/roomid/${requestId}`);
       });
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { socket } from "./Loading";
 
 const RoomRequestModal = ({ show, onhide, roomId, requesterId }) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const RoomRequestModal = ({ show, onhide, roomId, requesterId }) => {
 
     socket.emit("respond-to-room-request", roomId, val);
     if (val === true) {
-      toast.success("You accepted the request ... ");
+      // toast.success("You accepted the request ... ");
       return navigate(`/roomid/${roomId}`);
     }
     onhide();
@@ -39,7 +40,7 @@ const RoomRequestModal = ({ show, onhide, roomId, requesterId }) => {
           onClick={() => handleResponse(true)}
           disabled={loading}
         >
-          {loading ? <>{loadingMessage} </> : "Accept"}
+          {loading ? "Decline" : "Accept"}
         </Button>
         <Button
           variant="danger"
