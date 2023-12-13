@@ -1,0 +1,45 @@
+/* SplashScreen.css */
+
+.SSContainer {
+  position: absolute;
+  background-color: aqua;
+  height: 100vh;
+  width: 100%;
+  z-index: 10;
+  overflow: hidden;
+}
+.SSContainer> div {
+  position: relative;
+  border: 2px solid blue;
+  height: 100vh;
+}
+.TopLine {
+  width: 10px;
+  height: 50%;
+  background-color: black;
+  position: absolute;
+  left: 55%;
+}
+.BottomLine {
+  width: 10px;
+  height: 50%;
+  background-color: rgb(17, 224, 103);
+  position: absolute;
+  left: 45%;
+}
+.LeftLine {
+  width: calc(50vh);
+  height: 10px;
+  background-color: rgb(226, 29, 29);
+  position: absolute;
+  left: 0%;
+  top: calc(25vh + 50vh/3 + 10px);
+}
+.RightLine {
+  width: calc(50vh);
+  height: 10px;
+  background-color: rgb(206, 224, 9);
+  position: absolute;
+  right: 1; 
+  top: calc(25vh + 50vh/3 + 50vh/3 + 10px);
+}

@@ -12,7 +12,7 @@ const EnterName = ({
     <div className="HomeButtons">
       {!userNameInput && (
         <div className="InputContainer">
-          <div>
+          <div className="InputBox">
             <input
               type="text"
               value={userName}

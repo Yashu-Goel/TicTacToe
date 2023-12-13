@@ -4,8 +4,17 @@ import Home from "./Components/Home";
 import StartGame from "./Components/StartGame";
 import FindFriends from "./Components/FindFriends";
 import Room from "./Components/Room";
+import SplashScreen from "./Components/SplashScreen";
+
 const App = () => {
-  return (
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    }, []);
+  return ( isLoading ? <SplashScreen/> : 
     <>
       <Routes>
         <Route path="/" element={<Home />} />

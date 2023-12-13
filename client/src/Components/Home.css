@@ -31,6 +31,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 .HomeButtons{
   display: flex;
@@ -74,12 +75,20 @@
   font-family: "Sigmar One", sans-serif;
   font-size: 1.8rem;
   color: #1e00ff;
+  
 }
 .InputContainer{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+}
+.InputBox
+{
+    display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 /* Use Color Code: #1e00ff (Blue)
