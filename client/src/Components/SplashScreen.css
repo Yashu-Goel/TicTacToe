@@ -1,45 +1,111 @@
-/* SplashScreen.css */
-
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap");
 .SSContainer {
-  position: absolute;
-  background-color: aqua;
+  position: relative;
+  background-color: #000;
   height: 100vh;
   width: 100%;
-  z-index: 10;
+  z-index: 5;
   overflow: hidden;
 }
-.SSContainer> div {
-  position: relative;
-  border: 2px solid blue;
-  height: 100vh;
-}
+
 .TopLine {
   width: 10px;
   height: 50%;
-  background-color: black;
+  background-color: white;
   position: absolute;
   left: 55%;
+  border-radius: 5px;
 }
 .BottomLine {
   width: 10px;
   height: 50%;
-  background-color: rgb(17, 224, 103);
+  background-color: white;
   position: absolute;
   left: 45%;
+    border-radius: 5px;
+
 }
 .LeftLine {
   width: calc(50vh);
   height: 10px;
-  background-color: rgb(226, 29, 29);
+  background-color: white;
   position: absolute;
   left: 0%;
   top: calc(25vh + 50vh/3 + 10px);
+    border-radius: 5px;
+
 }
 .RightLine {
   width: calc(50vh);
   height: 10px;
-  background-color: rgb(206, 224, 9);
+  background-color: white;
   position: absolute;
   right: 1; 
   top: calc(25vh + 50vh/3 + 50vh/3 + 10px);
+    border-radius: 5px;
+
+}
+.Content
+{
+
+    font-family: "Open Sans", sans-serif;
+
+}
+.XM{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 10rem;
+  font-weight: bold;
+  color: white;
+}
+.OBC{
+  position: absolute;
+  top: 66.7%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 10rem;
+  font-weight: bold;
+  color: white;
+}
+.XTR{
+  position: absolute;
+  top: 33.33%;
+  left: 60%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 10rem;
+  font-weight: bold;
+  color: white;
+}
+.OTM{
+  position: absolute;
+  top: 33.33%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 10rem;
+  font-weight: bold;
+  color: white;
+}
+.XLB{
+  position: absolute;
+  top: 66.7%;
+  left: 40%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 10rem;
+  font-weight: bold;
+  color: white;
+}
+
+.SSBox{
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  height: 100vh;
+  width: 100%;
 }

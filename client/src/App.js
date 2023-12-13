@@ -12,7 +12,7 @@ const App = () => {
     React.useEffect(() => {
       setTimeout(() => {
         setIsLoading(false);
-      }, 2000);
+      }, 3300);
     }, []);
   return ( isLoading ? <SplashScreen/> : 
     <>

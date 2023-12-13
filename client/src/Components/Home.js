@@ -1,4 +1,3 @@
-// Home.js
 import React, { useState } from "react";
 import "./Home.css";
 import X from "../Assets/X.png";
