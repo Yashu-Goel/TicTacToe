@@ -9,14 +9,15 @@
 }
 
 .RoomCodeContainer {
-  font-size: 5rem;
+  font-size: 3rem;
   font-family: "Open Sans", sans-serif;
-  background: linear-gradient(to right, #1400ff, #dc00ff);
+  /* background: linear-gradient(to right, #1400ff, #dc00ff);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-decoration: underline;
-  margin-bottom: 3rem;
+  -webkit-text-fill-color: transparent; */
+  color: #0000ff  ;
+  /* text-decoration: underline; */
   position: relative;
+  
 }
 .RoomCodeContainer:before {
   content: "";
@@ -253,6 +254,7 @@ button:hover {
   position: relative;
   /* outline: 1px solid black; */
 }
+
 p.badge {
   position: absolute;
   padding: 0;

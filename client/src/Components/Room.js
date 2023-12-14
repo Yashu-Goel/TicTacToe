@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import ResultModal from "./ResultModal";
 import "./Room.css";
 import ShootingStars from "./ShootingStars";
+import MessagePop from "./MessagePop";
 const Room = () => {
   const { id } = useParams();
   const [gameData, setGameData] = useState(null);
@@ -16,6 +17,11 @@ const Room = () => {
   const [messages, setMessages] = useState([]);
   const [MsgCount, setMsgCount] = useState(0);
   const [toggle, setToggle] = useState(false);
+const sampleMessages = [
+  { text: "Hello!", time: "10:00 AM", sender: "sender" },
+  { text: "How are you?", time: "10:05 AM", sender: "receiver" },
+  { text: "I'm good, thanks!", time: "10:10 AM", sender: "sender" },
+];
 
   useEffect(() => {
     socket.on("room-created", updateBoard);
@@ -203,29 +209,30 @@ const Room = () => {
     //   <ShootingStars />
     // </div>
     <>
-      {gameResult && (
-        <ResultModal
-          show={true}
-          result={gameResult}
-          onHide={() => setGameResult(null)}
-        />
-      )}
-      <div className="start-game-container">
-        <div className="rightbar">
-          <div className="RoomCodeContainer">
-            <span>Room Code: {id}</span>
-          </div>
-          {gameData && (
-            <>
-              {/* <p className="game-status">
+      <div className="RoomMainContainer">
+        {gameResult && (
+          <ResultModal
+            show={true}
+            result={gameResult}
+            onHide={() => setGameResult(null)}
+          />
+        )}
+        <div className="RoomCodeContainer">
+          <span>Room Code: {id}</span>
+        </div>
+        <div className="start-game-container">
+          <div className="rightbar">
+            {gameData && (
+              <>
+                {/* <p className="game-status">
               {gameData && gameData.gameOver
                 ? "Match Over"
                 : gameData.currentPlayer === socket.id
                 ? "Your Turn"
                 : "Opponent's Turn"}
             </p> */}
-              <div className="game-board">
-                {/* <div className="player-info">
+                <div className="game-board">
+                  {/* <div className="player-info">
                   <p
                     className={
                       gameData.player1 === socket.id ? "me" : "opponent"
@@ -246,74 +253,72 @@ const Room = () => {
                       : `Opponent-> ${gameData.player2}`}
                   </p>
                 </div> */}
-                <div className="player-info-container">
-                  <div className="player">
-                    <div
-                      className={`avatar ${
-                        gameData.player1 === socket.id ? "me" : ""
-                      }`}
-                    >
-                      {"A"}
+                  <div className="player-info-container">
+                    <div className="player">
+                      <div
+                        className={`avatar ${
+                          gameData.player1 === socket.id ? "me" : ""
+                        }`}
+                      >
+                        {"A"}
+                      </div>
+
+                      <div className="name">
+                        {gameData.player1 === socket.id ? "You" : "Opponent"}
+                      </div>
                     </div>
 
-                    <div className="name">
-                      {gameData.player1 === socket.id
-                        ? "You"
-                        : "Opponent"}
+                    <div className="vs">V⚡S</div>
+
+                    <div className="player">
+                      <div
+                        className={`avatar ${
+                          gameData.player2 === socket.id ? "me" : ""
+                        }`}
+                      >
+                        {"B"}
+                      </div>
+
+                      <div className="name">
+                        {gameData.player2 === socket.id
+                          ? "You"
+                          : gameData.player2}
+                      </div>
                     </div>
                   </div>
-
-                  <div className="vs">V⚡S</div>
-
-                  <div className="player">
-                    <div
-                      className={`avatar ${
-                        gameData.player2 === socket.id ? "me" : ""
-                      }`}
-                    >
-                      {"B"}
-                    </div>
-
-                    <div className="name">
-                      {gameData.player2 === socket.id
-                        ? "You"
-                        : gameData.player2}
-                    </div>
+                  <div className="GridContainer">
+                    {gameData.board.map((cell, index) => (
+                      <div
+                        key={index}
+                        className={`box box${index}`}
+                        onClick={() => makeMove(index)}
+                        disabled={
+                          cell !== "" || gameData.currentPlayer !== socket.id
+                        }
+                      >
+                        {cell === ""
+                          ? ""
+                          : cell === socket.id
+                          ? symbol
+                          : symbol === "X"
+                          ? "O"
+                          : "X"}
+                      </div>
+                    ))}
                   </div>
-                </div>
-                <div className="GridContainer">
-                  {gameData.board.map((cell, index) => (
-                    <div
-                      key={index}
-                      className={`box box${index}`}
-                      onClick={() => makeMove(index)}
-                      disabled={
-                        cell !== "" || gameData.currentPlayer !== socket.id
-                      }
-                    >
-                      {cell === ""
-                        ? ""
-                        : cell === socket.id
-                        ? symbol
-                        : symbol === "X"
-                        ? "O"
-                        : "X"}
-                    </div>
-                  ))}
+
+                  {/* {gameResult && <div className="game-result">{gameResult}</div>} */}
                 </div>
 
-                {/* {gameResult && <div className="game-result">{gameResult}</div>} */}
-              </div>
-
-              {gameData.gameOver && (
-                <button onClick={restartGame} className="restart-button">
-                  Play Again
-                </button>
-              )}
-            </>
-          )}
-        </div>
-        {/* {gameData && !loadingText && (
+                {gameData.gameOver && (
+                  <button onClick={restartGame} className="restart-button">
+                    Play Again
+                  </button>
+                )}
+              </>
+            )}
+          </div>
+          {/* {gameData && !loadingText && (
         <div className="leftBar">
           <button
             onClick={() => {
@@ -338,6 +343,8 @@ const Room = () => {
           messListRef={messListRef}
         />
       )} */}
+        </div>
+        <MessagePop messageList={sampleMessages} />
       </div>
     </>
   );
