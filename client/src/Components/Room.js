@@ -1,30 +1,80 @@
 import React, { useEffect } from "react";
 import { socket, getCurrentTimeInIndianFormat } from "../Modals/Loading";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import toast from "react-hot-toast";
 import ResultModal from "./ResultModal";
 import "./Room.css";
 import ShootingStars from "./ShootingStars";
 import MessagePop from "./MessagePop";
+import PlayAgainModalResp from "./PlayAgainModalResp";
 const Room = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [gameData, setGameData] = useState(null);
   const [symbol, setSymbol] = useState("X");
   const [gameResult, setGameResult] = useState(null);
+
+  // states for only play again response modal
+  const [roomId, setRoomId] = useState(null);
+  const [playAgainRespModal, setPlayAgainRespModal] = useState(false);
+  const [requesterId, setRequesterId] = useState(null);
+
   const messListRef = useRef(null);
+  const [Loading, setLoading] = useState(false);
 
   const [messages, setMessages] = useState([]);
   const [MsgCount, setMsgCount] = useState(0);
   const [toggle, setToggle] = useState(false);
-const sampleMessages = [
-  { text: "Hello!", time: "10:00 AM", sender: "sender" },
-  { text: "How are you?", time: "10:05 AM", sender: "receiver" },
-  { text: "I'm good, thanks!", time: "10:10 AM", sender: "sender" },
-];
+  const sampleMessages = [
+    { text: "Hello!", time: "10:00 AM", sender: "sender" },
+    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
+    {
+      text: "I'm good, tha hhd h dh dh dh dh  hh h  hbhbh jnjnjnjnj hbhdbsh njnhnnks!",
+      time: "10:10 AM",
+      sender: "sender",
+    },
+    { text: "Hello!", time: "10:00 AM", sender: "sender" },
+    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
+    { text: "I'm good, thanks!", time: "10:10 AM", sender: "sender" },
+    { text: "Hello!", time: "10:00 AM", sender: "sender" },
+    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
+    {
+      text: "I'm good, tha hhd h dh dh dh dh  hh h  hbhbh jnjnjnjnj hbhdbsh njnhnnks!",
+      time: "10:10 AM",
+      sender: "sender",
+    },
+    { text: "Hello!", time: "10:00 AM", sender: "sender" },
+    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
+    { text: "I'm good, thanks!", time: "10:10 AM", sender: "sender" },
+    { text: "Hello!", time: "10:00 AM", sender: "sender" },
+    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
+    {
+      text: "I'm good, tha hhd h dh dh dh dh  hh h  hbhbh jnjnjnjnj hbhdbsh njnhnnks!",
+      time: "10:10 AM",
+      sender: "sender",
+    },
+    { text: "Hello!", time: "10:00 AM", sender: "sender" },
+    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
+    { text: "I'm good, thanks!", time: "10:10 AM", sender: "sender" },
+    { text: "Hello!", time: "10:00 AM", sender: "sender" },
+    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
+    {
+      text: "I'm good, tha hhd h dh dh dh dh  hh h  hbhbh jnjnjnjnj hbhdbsh njnhnnks!",
+      time: "10:10 AM",
+      sender: "sender",
+    },
+    { text: "Hello!", time: "10:00 AM", sender: "sender" },
+    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
+    { text: "I'm good, thanks!", time: "10:10 AM", sender: "sender" },
+  ];
 
   useEffect(() => {
-    socket.on("room-created", updateBoard);
+    socket.on("room-created", (data) => {
+      setGameResult(null);
+      setGameData(null);
+      updateBoard(data);
+    });
     socket.on("update-board", updateBoard);
     socket.on("respond-to-play-again", playAgainResponse);
     socket.off("play-again-request-accepted");
@@ -45,29 +95,48 @@ const sampleMessages = [
       socket.off("update-board");
       socket.off("respond-to-play-again");
       socket.off("receive-message-from-room");
+      setLoading(false);
     };
   });
 
   function playAgainResponse(id, roomId) {
-    const message = `Player ${id} has invited you to play again in the same room (Room ID: ${roomId}). Would you like to play again?`;
-
-    const play = window.confirm(message);
-    if (play === true) {
-      console.log("hello");
-      socket.emit("response-to-play-again", roomId, true, socket.id);
-    } else {
-      socket.emit("response-to-play-again", roomId, false, socket.id);
-    }
+    setGameResult(null);
+    setGameData(null);
+    setRoomId(roomId);
+    setRequesterId(id);
+    setPlayAgainRespModal(true);
   }
   function playAgainAcceptedReply(roomId, recipient) {
-    alert(`Your request was accepted by ${recipient} and room id is ${roomId}`);
+    setGameResult(null);
+    setPlayAgainRespModal(false);
+
+    if (!roomId) {
+      // toast.error;
+      toast.error("Your request was declined..");
+      navigate("/find_friends");
+      return;
+    }
+
+    const message = (
+      <div style={{ textAlign: "center" }}>
+        <p style={{ margin: "0", fontSize: "16px" }}>
+          Your request was accepted by <br /> <strong>✅ {recipient}</strong>.
+        </p>
+        <p style={{ margin: "0", fontSize: "16px" }}>
+          Room ID is <strong>{roomId}</strong>.
+        </p>
+      </div>
+    );
+    toast(message, {
+      duration: 2000,
+    });
     socket.off("play-again-request-accepted");
   }
   const updateBoard = (data) => {
     if (!data) return;
     setGameData(data);
 
-    if (data.currentPlayer === socket.id) {
+    if (data.currentPlayer === socket.id && data?.gameOver && data?.gameWon) {
       toast.success("It's your turn!", {
         position: "top-center",
         duration: 1500,
@@ -76,7 +145,11 @@ const sampleMessages = [
           color: "#fff",
         },
       });
-    } else {
+    } else if (
+      data.currentPlayer !== socket.id &&
+      data?.gameOver &&
+      data?.gameWon
+    ) {
       toast("It's opponents turn", {
         position: "top-center",
         duration: 1500,
@@ -109,6 +182,7 @@ const sampleMessages = [
   }
 
   const restartGame = () => {
+    setLoading(true);
     if (gameData) {
       socket.emit("restart-game", gameData, socket?.id);
       socket.on("play-again-request-accepted", playAgainAcceptedReply);
@@ -129,92 +203,24 @@ const sampleMessages = [
   }
 
   return (
-    // <div className="RoomMainContainer">
-    //   <div className="RoomCodeContainer">
-    //     <span>Room Code: {id}</span>
-    //   </div>
-    //   {gameData && (
-    //     <>
-    //       <p>Toggle Symbol:</p>
-    //       <button onClick={handleToggle}>Change Symbol</button>
-    //       <p>Your Symbol: {symbol}</p>
-    //       <p className="game-status">
-    //         {gameData && gameData.gameOver
-    //           ? "Match Over"
-    //           : gameData.currentPlayer === socket.id
-    //           ? "Your Turn"
-    //           : "Opponent's Turn"}
-    //       </p>
-    //       <div className="game-board">
-    //         <div className="player-info">
-    //           <p className={gameData.player1 === socket.id ? "me" : "opponent"}>
-    //             {gameData.player1 === socket.id
-    //               ? `You-> ${gameData.player1}`
-    //               : `Opponent-> ${gameData.player1}`}
-    //           </p>
-    //           <p>V⚡S</p>
-    //           <p className={gameData.player2 === socket.id ? "me" : "opponent"}>
-    //             {gameData.player2 === socket.id
-    //               ? `You-> ${gameData.player2}`
-    //               : `Opponent-> ${gameData.player2}`}
-    //           </p>
-    //         </div>
-    //         <div className="board">
-    //           {gameData.board.map((cell, index) => (
-    //             <div
-    //               key={index}
-    //               className="cell"
-    //               onClick={() => makeMove(index)}
-    //               disabled={cell !== "" || gameData.currentPlayer !== socket.id}
-    //             >
-    //               {cell === ""
-    //                 ? ""
-    //                 : cell === socket.id
-    //                 ? symbol
-    //                 : symbol === "X"
-    //                 ? "O"
-    //                 : "X"}
-    //             </div>
-    //           ))}
-    //         </div>
-
-    //         {gameResult && <div className="game-result">{gameResult}</div>}
-    //       </div>
-
-    //       {gameData.gameOver && (
-    //         <button onClick={restartGame} className="restart-button">
-    //           Play Again
-    //         </button>
-    //       )}
-    //     </>
-    //   )}
-
-    //   {/* <div className="GridContainer">
-    //     <div class="box box1">X</div>
-    //     <div class="box box2">X</div>
-    //     <div class="box box3">O</div>
-    //     <div class="box box4">O</div>
-    //     <div class="box box5">X</div>
-    //     <div class="box box6">O</div>
-    //     <div class="box box7">X</div>
-    //     <div class="box box8">X</div>
-    //     <div class="box box9">O</div>
-    //   </div> */}
-
-    //   {/* <div className="PlayerText">
-    //     <p>Opponent: {"Allen Sir"}</p>
-    //   </div> */}
-
-    //   {/* <div>{"Winner"}</div> */}
-    //   <ShootingStars />
-    // </div>
     <>
       <div className="RoomMainContainer">
         {gameResult && (
           <ResultModal
             show={true}
             result={gameResult}
+            data={gameData}
             onHide={() => setGameResult(null)}
+            restartGame={restartGame}
+            Loading={Loading}
+          />
+        )}
+        {playAgainRespModal && (
+          <PlayAgainModalResp
+            show={true}
+            roomId={roomId}
+            id={requesterId}
+            onHide={() => setPlayAgainRespModal(null)}
           />
         )}
         <div className="RoomCodeContainer">
@@ -224,35 +230,7 @@ const sampleMessages = [
           <div className="rightbar">
             {gameData && (
               <>
-                {/* <p className="game-status">
-              {gameData && gameData.gameOver
-                ? "Match Over"
-                : gameData.currentPlayer === socket.id
-                ? "Your Turn"
-                : "Opponent's Turn"}
-            </p> */}
                 <div className="game-board">
-                  {/* <div className="player-info">
-                  <p
-                    className={
-                      gameData.player1 === socket.id ? "me" : "opponent"
-                    }
-                  >
-                    {gameData.player1 === socket.id
-                      ? `You-> ${gameData.player1}`
-                      : `Opponent-> ${gameData.player1}`}
-                  </p>
-                  <p style={{ margin: "0px" }}>V⚡S</p>
-                  <p
-                    className={
-                      gameData.player2 === socket.id ? "me" : "opponent"
-                    }
-                  >
-                    {gameData.player2 === socket.id
-                      ? `You-> ${gameData.player2}`
-                      : `Opponent-> ${gameData.player2}`}
-                  </p>
-                </div> */}
                   <div className="player-info-container">
                     <div className="player">
                       <div
@@ -280,9 +258,7 @@ const sampleMessages = [
                       </div>
 
                       <div className="name">
-                        {gameData.player2 === socket.id
-                          ? "You"
-                          : gameData.player2}
+                        {gameData.player2 !== socket.id ? "Opponent" : "You"}
                       </div>
                     </div>
                   </div>
@@ -306,43 +282,10 @@ const sampleMessages = [
                       </div>
                     ))}
                   </div>
-
-                  {/* {gameResult && <div className="game-result">{gameResult}</div>} */}
                 </div>
-
-                {gameData.gameOver && (
-                  <button onClick={restartGame} className="restart-button">
-                    Play Again
-                  </button>
-                )}
               </>
             )}
           </div>
-          {/* {gameData && !loadingText && (
-        <div className="leftBar">
-          <button
-            onClick={() => {
-              setMsgCount(0);
-              setToggle(!toggle);
-            }}
-          >
-            💬 {MsgCount !== 0 && <p className="badge">{MsgCount}</p>}
-          </button>
-
-          <button id="playAgainButton">🔃</button>
-          <button id="exitButton">❌</button>
-        </div>
-      )}
-
-      {toggle && (
-        <MessagePop
-          messageList={messages}
-          sendMessage={sendMessage}
-          id={socket.id}
-          roomId={gameData.roomId}
-          messListRef={messListRef}
-        />
-      )} */}
         </div>
         <MessagePop messageList={sampleMessages} />
       </div>

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "./ResultModal.css";
+import { useNavigate } from "react-router-dom";
 
-const ResultModal = ({ result, show, onHide }) => {
+const ResultModal = ({ result, show, onHide, restartGame, data, Loading }) => {
+  const navigate = useNavigate();
   if (!result) {
     onHide();
     return;
@@ -20,8 +22,16 @@ const ResultModal = ({ result, show, onHide }) => {
     color: result.includes("You won") ? "green" : "red",
     fontWeight: "bolder",
   };
+
   return (
-    <Modal show={show} onHide={onHide} centered style={modalStyle}>
+    <Modal
+      show={show}
+      onHide={onHide}
+      centered
+      style={modalStyle}
+      backdrop="static"
+      keyboard={false}
+    >
       <Modal.Header>
         <Modal.Title>Game Result</Modal.Title>
       </Modal.Header>
@@ -29,7 +39,6 @@ const ResultModal = ({ result, show, onHide }) => {
         {result === "The game ended in a draw." ? (
           <>
             <p>{result}</p>
-            <p>It's a draw! Try again.</p>
           </>
         ) : (
           <>
@@ -45,7 +54,18 @@ const ResultModal = ({ result, show, onHide }) => {
         )}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={onHide}>
+        <Button variant="success" onClick={restartGame} disabled={Loading}>
+          {Loading ? "Request Sent..." : "Play Again"}
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => {
+            onHide();
+            navigate("/find_friends");
+            return;
+          }}
+          disabled={Loading}
+        >
           Close
         </Button>
       </Modal.Footer>

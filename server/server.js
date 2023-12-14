@@ -144,7 +144,8 @@ io.on("connection", (socket) => {
   });
 
   socket.on("restart-game", (game, id) => {
-    console.log(game);
+    if (!game || !rooms.get(game.roomId)) return;
+    console.log(`restarted the game by ${id}`);
     const { requester, recipient } = rooms.get(game?.roomId);
 
     io.to(requester !== id ? requester : recipient).emit(
@@ -155,6 +156,9 @@ io.on("connection", (socket) => {
     // io.to(requester).to(recipient).emit("room-created", newGame);
   });
   socket.on("response-to-play-again", (roomId, accept, id) => {
+    console.log(
+      `player reponse has been accpeted .. ${roomId} ${accept} ${id}`
+    );
     if (rooms.has(roomId)) {
       const { requester, recipient } = rooms.get(roomId);
 
@@ -168,7 +172,12 @@ io.on("connection", (socket) => {
         rooms.get(roomId).game = newGame;
         io.to(requester).to(recipient).emit("room-created", newGame);
       } else {
-        rooms.delete(requestId);
+        io.to(requester !== id ? requester : recipient).emit(
+          "play-again-request-accepted",
+          false,
+          requester !== id ? requester : recipient
+        );
+        if (roomId) rooms.delete(roomId);
       }
     }
   });

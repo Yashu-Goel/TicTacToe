@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "./MessagePop.css";
 import { BiSolidMessageRoundedDetail } from "react-icons/bi";
+import Send from "../Assets/Send";
 
 const OpponentName = ({ name }) => {
-  return <div className="opponent-name">{name}</div>;
+  return (
+    <div className="opponent-name">Chat to :- {"tFxFIxWRHLgO2QA1AAAF"}</div>
+  );
 };
 
 const MessagePop = ({ messageList, opponentName }) => {
@@ -28,16 +31,16 @@ const MessagePop = ({ messageList, opponentName }) => {
                   message.sender === "sender" ? "sent" : "received"
                 }`}
               >
-                <div className="message-content">{message.text}</div>
-                <div className="message-info">
-                  <div className="message-time">{message.time}</div>
-                </div>
+                <p className="message-content">{message.text}</p>
+                <p className="message-time">{message.time}</p>
               </div>
             ))}
           </div>
           <div className="message-input">
             <input type="text" placeholder="Type your message" />
-            <button>Send</button>
+            <button>
+              <Send color="#007bff" size="2.5em" />
+            </button>
           </div>
         </div>
       ) : null}
