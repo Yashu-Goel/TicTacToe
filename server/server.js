@@ -119,7 +119,7 @@ io.on("connection", (socket) => {
     }
   });
   socket.on("make-move", (roomId, cellIndex, playerId) => {
-    const game = rooms.get(roomId).game;
+    const game = rooms.get(roomId)?.game;
     if (
       game &&
       !game.gameOver &&
@@ -153,7 +153,6 @@ io.on("connection", (socket) => {
       id,
       game.roomId
     );
-    // io.to(requester).to(recipient).emit("room-created", newGame);
   });
   socket.on("response-to-play-again", (roomId, accept, id) => {
     console.log(
@@ -188,11 +187,12 @@ io.on("connection", (socket) => {
         time,
         id: senderId,
       };
+      console.log(newMessage);
       rooms.get(roomId).messages.push(newMessage);
       const { requester, recipient } = rooms.get(roomId);
       io.to(requester)
         .to(recipient)
-        .emit("receive-message-from-room", newMessage``);
+        .emit("receive-message-from-room", newMessage);
 
       console.log(rooms.get(roomId).messages);
     }

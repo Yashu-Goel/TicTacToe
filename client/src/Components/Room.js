@@ -24,51 +24,9 @@ const Room = () => {
   const [Loading, setLoading] = useState(false);
 
   const [messages, setMessages] = useState([]);
-  const [MsgCount, setMsgCount] = useState(0);
+  const [MsgCount, setMsgCount] = useState(false);
   const [toggle, setToggle] = useState(false);
-  const sampleMessages = [
-    { text: "Hello!", time: "10:00 AM", sender: "sender" },
-    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
-    {
-      text: "I'm good, tha hhd h dh dh dh dh  hh h  hbhbh jnjnjnjnj hbhdbsh njnhnnks!",
-      time: "10:10 AM",
-      sender: "sender",
-    },
-    { text: "Hello!", time: "10:00 AM", sender: "sender" },
-    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
-    { text: "I'm good, thanks!", time: "10:10 AM", sender: "sender" },
-    { text: "Hello!", time: "10:00 AM", sender: "sender" },
-    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
-    {
-      text: "I'm good, tha hhd h dh dh dh dh  hh h  hbhbh jnjnjnjnj hbhdbsh njnhnnks!",
-      time: "10:10 AM",
-      sender: "sender",
-    },
-    { text: "Hello!", time: "10:00 AM", sender: "sender" },
-    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
-    { text: "I'm good, thanks!", time: "10:10 AM", sender: "sender" },
-    { text: "Hello!", time: "10:00 AM", sender: "sender" },
-    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
-    {
-      text: "I'm good, tha hhd h dh dh dh dh  hh h  hbhbh jnjnjnjnj hbhdbsh njnhnnks!",
-      time: "10:10 AM",
-      sender: "sender",
-    },
-    { text: "Hello!", time: "10:00 AM", sender: "sender" },
-    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
-    { text: "I'm good, thanks!", time: "10:10 AM", sender: "sender" },
-    { text: "Hello!", time: "10:00 AM", sender: "sender" },
-    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
-    {
-      text: "I'm good, tha hhd h dh dh dh dh  hh h  hbhbh jnjnjnjnj hbhdbsh njnhnnks!",
-      time: "10:10 AM",
-      sender: "sender",
-    },
-    { text: "Hello!", time: "10:00 AM", sender: "sender" },
-    { text: "How are you?", time: "10:05 AM", sender: "receiver" },
-    { text: "I'm good, thanks!", time: "10:10 AM", sender: "sender" },
-  ];
-
+  
   useEffect(() => {
     socket.on("room-created", (data) => {
       setGameResult(null);
@@ -81,10 +39,12 @@ const Room = () => {
 
     socket.on("receive-message-from-room", (arr) => {
       if (!toggle && arr.id !== socket.id) {
-        setMsgCount((pre) => pre + 1);
+        // setMsgCount((pre) => pre + 1);
+        setMsgCount(true);
+
       }
       if (toggle) {
-        setMsgCount(0);
+        setMsgCount(false);
       }
       setMessages((prev) => [...prev, arr]);
       messListRef.current?.lastChild?.scrollIntoView();
@@ -192,7 +152,8 @@ const Room = () => {
   };
 
   function sendMessage(message) {
-    if (message.trim() === "") return;
+    if (message.trim() === "" || !gameData || !gameData.roomId) return;
+
     socket.emit(
       "send-message-to-room",
       message,
@@ -287,7 +248,13 @@ const Room = () => {
             )}
           </div>
         </div>
-        <MessagePop messageList={sampleMessages} />
+        <MessagePop
+          messageList={messages}
+          sendMessage={sendMessage}
+          id={socket.id}
+          msgNotify={MsgCount}
+          setMsgCount={setMsgCount}
+        />
       </div>
     </>
   );
