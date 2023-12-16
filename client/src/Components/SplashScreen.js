@@ -22,7 +22,6 @@ const SplashScreen = () => {
 
     const OrgHeight = window.screen.height;
     const OrgWidth = window.screen.width;
-
     topLineTimeline.fromTo(
       topLine,
       { y: 0, opacity: 0.5 },
@@ -49,7 +48,7 @@ const SplashScreen = () => {
       leftLine,
       { x: 0, opacity: 0.5 },
       {
-        x: OrgWidth / 2 - OrgHeight / 4 - 10,
+        x: OrgWidth / 2 - OrgHeight / 4 ,
         opacity: 1,
         duration: 1.5,
         ease: "power2.inOut",
@@ -60,7 +59,7 @@ const SplashScreen = () => {
       rightLine,
       { x: OrgWidth, opacity: 0.5 },
       {
-        x: OrgWidth / 2 - OrgHeight / 4 - 10,
+        x: OrgWidth / 2 - OrgHeight / 4,
         opacity: 1,
         duration: 1.5,
         ease: "power2.inOut",

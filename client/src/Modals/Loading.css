@@ -9,7 +9,6 @@
   background-image: url("../Assets/Background.png");
   background-size: cover;
   overflow-y: auto;
-  
 }
 
 .loading-content {
@@ -17,8 +16,22 @@
   z-index: 5;
   text-align: center;
   color: #000;
+
   font-family: "Sigmar One", sans-serif;
 }
+.friends-list {
+  border: 2px solid red;
+  overflow-y: auto;
+}
+.loading-content{
+  border: 2px solid red;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
 .friends-list > li {
   display: flex;
   margin: 10px 0px;
@@ -29,8 +42,9 @@
   top: 0;
   background-color: white;
   font-size: 2rem;
-  user-select: auto !important; 
-} 
+  z-index: 15;
+  user-select: auto !important;
+}
 .fade {
   z-index: 155555 !important;
   opacity: 1;
@@ -53,14 +67,13 @@ p {
   font-size: 24px;
   margin: 0;
 }
-.CopyButton{
+.CopyButton {
   user-select: auto;
   border: 2px solid red;
 }
-.CopyButton:hover{
+.CopyButton:hover {
   background-color: black;
   cursor: pointer;
-  
 }
 /* Animation styles */
 @keyframes fadeInOut {

@@ -12,8 +12,9 @@ const App = () => {
     React.useEffect(() => {
       setTimeout(() => {
         setIsLoading(false);
-      }, 3300);
+      }, 30);
     }, []);
+    console.log("okk")
   return ( isLoading ? <SplashScreen/> : 
     <>
       <Routes>
