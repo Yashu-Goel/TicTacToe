@@ -14,10 +14,9 @@
   /* background: linear-gradient(to right, #1400ff, #dc00ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
-  color: #0000ff  ;
+  color: #0000ff;
   /* text-decoration: underline; */
   position: relative;
-  
 }
 .RoomCodeContainer:before {
   content: "";
@@ -40,12 +39,12 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   aspect-ratio: 1/1;
-  background-color: #0056b3;
+  /* background-color: #0057b3; */
   z-index: 10;
 }
 
 .box {
-  background-color: #b6c1ff;
+  background-color: #0057b3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,25 +57,10 @@
   font-family: "Open Sans", sans-serif;
   border: 2px solid white;
 }
-
-/* .box1,
-.box2,
-.box4,
-.box5 {
-  border-right: 2px solid white;
-  border-bottom: 2px solid white;
+.box[disabled] {
+  background-color: #0057b37d;
+  pointer-events: none;
 }
-
-.box3,
-.box6 {
-  border-bottom: 2px solid white;
-}
-
-.box7,
-.box8 {
-  border-right: 2px solid white;
-} */
-
 .PlayerText p {
   font-size: 2rem;
   font-weight: 800;

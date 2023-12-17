@@ -7,14 +7,13 @@ import { io } from "socket.io-client";
 import RequestModal from "./RequestModal";
 import RoomRequestModal from "./RoomRequestmodal";
 
-export const socket = io("http://localhost:5000");
+export const socket = io("http://3.110.90.170:5000");
 export function getCurrentTimeInIndianFormat() {
   const options = {
     hour: "numeric",
     minute: "numeric",
     hour12: true,
     timeZone: "Asia/Kolkata",
-    second: "numeric",
   };
   const indianTime = new Date(Date.now()).toLocaleString("en-US", options);
   return indianTime;
@@ -57,9 +56,12 @@ const Loading = () => {
     return () => {
       clearInterval(interval);
       window.removeEventListener("beforeunload", handleBeforeUnload);
+      handleBeforeUnload();
       socket.off("updateLobby");
     };
   }, []);
+
+  console.log("my socket id is: - ", socket.id);
 
   const getDots = () => {
     return ".".repeat(dots);
@@ -131,7 +133,6 @@ const Loading = () => {
           {onlineFriends.length === 0 ? (
             <p>Waiting for opponents{getDots()}</p>
           ) : (
-            
             <ol className="friends-list">
               {onlineFriends.map((friend, index) => (
                 <li key={index}>

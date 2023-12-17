@@ -1,55 +1,65 @@
-import React, { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import "./MessagePop.css";
-import { BiSolidMessageRoundedDetail } from "react-icons/bi";
-import { Badge } from "react-bootstrap";
 import Send from "../Assets/Send";
 
 const OpponentName = ({ name }) => {
   return (
-    <div className="opponent-name">
-      {/* Chat to :-{" "} */}
-      <strong style={{ color: "black", fontWeight: "bolder" }}>
-        {"tFxFIxWRHLgO2QA1AAAF"}
+    <div className="opponent-name" style={{ textAlign: "center" }}>
+      <strong style={{ color: "white", letterSpacing: "1px" }}>
+        {"Chats"}
       </strong>
     </div>
   );
 };
 
-const MessagePop = ({
-  messageList,
-  sendMessage,
-  id,
-  msgNotify,
-  setMsgCount,
-}) => {
+const MessagePop = ({ messageList, sendMessage, id, gameData }) => {
   const [Message, setMessage] = useState("");
-  const [click, setClick] = useState(false);
 
-  const handleClick = () => {
-    setClick(!click);
-    setMsgCount(false);
-  };
+  const ref = useRef();
+  useLayoutEffect(() => {
+    const scroll = () => {
+      if (ref.current) {
+        ref.current.scrollTop = ref.current.scrollHeight;
+      }
+    };
 
+    requestAnimationFrame(scroll);
+  }, [messageList]);
+  console.log("he");
   return (
     <div className="ChatContainer">
-      {click ? (
-        <div id="messagePopup" className="popup">
+      {gameData ? (
+        <div className="popup">
           <OpponentName name="Allen Sir" />
-          <div className="message-list">
+          <div className="message-list" ref={ref}>
+            {messageList.length === 0 && (
+              <p
+                style={{
+                  textAlign: "center",
+                  fontSize: "18px",
+                  color: "darkgray",
+                  margin: "auto",
+                  fontWeight: "bold",
+                }}
+              >
+                Start a conversation !!!
+              </p>
+            )}
+
             {messageList?.map((message, index) => (
               <div
                 key={index}
                 className={`message ${message.id === id ? "sent" : "received"}`}
               >
                 <p className="message-content">{message.text}</p>
-                <p className="message-time">{message.time}</p>
+                <p className="message-time">{message?.time}</p>
               </div>
             ))}
           </div>
           <div className="message-input">
             <input
               type="text"
-              placeholder="Type your message"
+              placeholder="Type something..."
               onChange={(e) => setMessage(e.target.value)}
               value={Message}
             />
@@ -59,35 +69,11 @@ const MessagePop = ({
                 setMessage("");
               }}
             >
-              <Send color="#007bff" size="2.5em" />
+              <Send color="#d11b2a" size="2em" />
             </button>
           </div>
         </div>
       ) : null}
-
-      <div className="MessageButton">
-        <div
-          style={{
-            position: "relative",
-          }}
-        >
-          <BiSolidMessageRoundedDetail onClick={handleClick} />
-          {msgNotify && (
-            <span
-              style={{
-                height: "12px",
-                position: "absolute",
-                top: "7px",
-                right: "10px",
-                width: "12px",
-                color: "red",
-                backgroundColor: "red",
-                borderRadius: "50%",
-              }}
-            ></span>
-          )}
-        </div>
-      </div>
     </div>
   );
 };
