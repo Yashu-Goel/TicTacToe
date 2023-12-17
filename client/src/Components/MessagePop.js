@@ -1,4 +1,4 @@
-import { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 import "./MessagePop.css";
 import Send from "../Assets/Send";
 
@@ -14,6 +14,7 @@ const OpponentName = ({ name }) => {
 
 const MessagePop = ({ messageList, sendMessage, id, gameData }) => {
   const [Message, setMessage] = useState("");
+  const [enterPressed, setEnterPressed] = useState(false);
 
   const ref = useRef();
   useLayoutEffect(() => {
@@ -25,7 +26,15 @@ const MessagePop = ({ messageList, sendMessage, id, gameData }) => {
 
     requestAnimationFrame(scroll);
   }, [messageList]);
-  console.log("he");
+
+  useEffect(() => {
+    if (enterPressed) {
+      sendMessage(Message);
+      setMessage("");
+      setEnterPressed(false);
+    }
+  }, [enterPressed, Message, sendMessage]);
+
   return (
     <div className="ChatContainer">
       {gameData ? (
@@ -62,6 +71,11 @@ const MessagePop = ({ messageList, sendMessage, id, gameData }) => {
               placeholder="Type something..."
               onChange={(e) => setMessage(e.target.value)}
               value={Message}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  setEnterPressed(true);
+                }
+              }}
             />
             <button
               onClick={() => {

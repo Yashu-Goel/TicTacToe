@@ -1,29 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap");
 .HomeOuterContainer {
-  background-image: url("../Assets/Background.png");
+  background-color: #161e2f;
   height: 100vh;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.XImage {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 22rem;
-  z-index: 5;
-  opacity: 0.7;
-}
-.OImage {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: rotate(180deg);
-  height: 22rem;
-  z-index: 5;
-  opacity: 0.7;
-}
+
 .HomeInnerContainer {
   position: absolute;
   z-index: 5;
@@ -43,23 +27,17 @@
   padding: 1rem 2rem;
   margin: 10px;
   border-radius: 10px;
-  border: 20px solid #1e00ff;
-  background: rgb(30, 0, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(30, 0, 255, 1) 33%,
-    rgba(213, 0, 255, 1) 100%
-  );
-  color: white;
+  background: #d9d9d9;
   cursor: pointer;
   font-family: "Sigmar One", sans-serif;
-  font-size: 1.4rem;
-  color: white;
-  border: 5px solid white;
-  transition: transform 0.1s;
+  font-size: 1.5rem;
+  color: #161e2f;
+  transition: background-color 0.2s, color 0.2s;
 }
 .HomeButtons button:hover{
-  transform: scale(1.05);
+  cursor: pointer;
+  background-color: #161e2f;
+  color: #d9d9d9;
 }
 .HomeButtons p{
   font-size: 1.2rem;
@@ -71,10 +49,10 @@
   padding: 0.8rem 1.5rem;
   margin: 10px;
   border-radius: 10px;
-  border: 2px solid #1e00ff;
+  background-color: #d9d9d9;
   font-family: "Sigmar One", sans-serif;
   font-size: 1.8rem;
-  color: #1e00ff;
+  color: #161e2f;
   
 }
 .InputContainer{
@@ -86,9 +64,13 @@
 }
 .InputBox
 {
-    display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
+}
+.InputBox input::placeholder
+{
+  color: #161e2f;
 
 }
 /* Use Color Code: #1e00ff (Blue)

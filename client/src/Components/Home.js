@@ -65,8 +65,6 @@ const handlePlayWithFriend = () => {
 
   return (
     <div className="HomeOuterContainer">
-      <img className="XImage" src={X} alt="X" />
-      <img className="OImage" src={O} alt="O" />
       <div className="HomeInnerContainer">
         <EnterName
           userName={userName}

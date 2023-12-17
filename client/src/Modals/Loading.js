@@ -7,7 +7,8 @@ import { io } from "socket.io-client";
 import RequestModal from "./RequestModal";
 import RoomRequestModal from "./RoomRequestmodal";
 
-export const socket = io("http://3.110.90.170:5000");
+// export const socket = io("http://3.110.90.170:5000");
+export const socket = io("http://localhost:5000");
 export function getCurrentTimeInIndianFormat() {
   const options = {
     hour: "numeric",
