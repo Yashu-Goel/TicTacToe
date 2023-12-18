@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Poppins&display=swap');
 .HomeOuterContainer {
   background-color: #161e2f;
   height: 100vh;
@@ -29,10 +29,13 @@
   border-radius: 10px;
   background: #d9d9d9;
   cursor: pointer;
-  font-family: "Sigmar One", sans-serif;
-  font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
   color: #161e2f;
   transition: background-color 0.2s, color 0.2s;
+   
+
 }
 .HomeButtons button:hover{
   cursor: pointer;
@@ -50,10 +53,12 @@
   margin: 10px;
   border-radius: 10px;
   background-color: #d9d9d9;
-  font-family: "Sigmar One", sans-serif;
-  font-size: 1.8rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  width: 30rem;
+  padding: 1rem;
+  font-size: 2rem;
   color: #161e2f;
-  
 }
 .InputContainer{
   display: flex;

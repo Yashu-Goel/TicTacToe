@@ -187,9 +187,7 @@ button:hover {
   transition: background-color 0.2s;
 }
 
-.cell:hover {
-  background-color: #eee;
-}
+
 /* Add styles for "me" and "opponent" */
 .me {
   color: #00f; /* Blue color for "me" */

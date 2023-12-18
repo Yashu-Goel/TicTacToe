@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./Home.css";
-import X from "../Assets/X.png";
-import O from "../Assets/O.png";
 import ShootingStars from "./ShootingStars";
 import { useNavigate } from "react-router-dom";
 import PlayButtons from "./PlayButton";

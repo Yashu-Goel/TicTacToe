@@ -107,14 +107,23 @@ const Loading = () => {
       )}
       <div className="loading-container">
         <div className="UserIdBox">
-          <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+          <Navbar
+            bg="dark"
+            variant="dark"
+            expand="lg"
+            fixed="top"
+            className="top-navbar"
+          >
             <Navbar.Collapse id="basic-navbar-nav">
               <Navbar.Text className="mr-auto">
                 User ID: {socket.id}
               </Navbar.Text>
               <Navbar.Text>
-                <Badge variant={IsConnected ? "success" : "danger"}>
-                  {IsConnected ? "Online" : "Offline"}
+                <Badge
+                  className="OnlineButton"
+                  variant={IsConnected ? "success" : "danger"}
+                >
+                  {IsConnected ? "Online" : ""}
                 </Badge>
               </Navbar.Text>
               <Navbar.Text>
@@ -129,12 +138,15 @@ const Loading = () => {
             </Navbar.Collapse>
           </Navbar>
         </div>
-
         <div className="loading-content">
           {onlineFriends.length === 0 ? (
             <p>Waiting for opponents{getDots()}</p>
           ) : (
             <ol className="friends-list">
+              <div className="MemberOnlineContainer">
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <p>members online</p>
+              </div>
               {onlineFriends.map((friend, index) => (
                 <li key={index}>
                   <p className="m-0">{friend}</p>

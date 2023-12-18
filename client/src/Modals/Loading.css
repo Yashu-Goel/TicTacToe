@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Poppins&display=swap");
 
 .loading-container {
   display: flex;
@@ -15,14 +15,15 @@
   position: absolute;
   z-index: 5;
   text-align: center;
-  color: #000;
   color: #d9d9d9;
-  font-family: "Sigmar One", sans-serif;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  overflow-y: scroll;
 }
 .friends-list {
   overflow-y: auto;
 }
-.loading-content{
+.loading-content {
   width: 100%;
   display: flex;
   align-items: center;
@@ -35,13 +36,42 @@
   margin: 10px 0px;
   gap: 10px;
 }
+.friends-list button {
+  background-color: #d9d9d9;
+  color: #161e2f;
+  font-weight: bold;
+}
+.top-navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #0bda51; */
+  margin: auto;
+  border: none;
+  border-radius: 10px;
+}
 .UserIdBox {
   position: absolute;
-  top: 0;
+  top: 20px;
   background-color: white;
   font-size: 2rem;
   z-index: 15;
-  user-select: auto !important;
+  user-select: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+#basic-navbar-nav {
+  display: flex;
+  /* border: 1px solid white; */
+}
+.OnlineButton {
+  background-color: #0bda51;
+}
+.mr-auto {
+  color: #161e2f;
+  font-weight: 500;
 }
 .fade {
   z-index: 155555 !important;
@@ -52,25 +82,53 @@
   margin-top: 20% !important;
 }
 .show {
-  z-index: 155555 !important;
+  z-index: 5 !important;
 }
 .modal {
-  z-index: 155555 !important;
+  z-index: 5 !important;
+}
+.friends-list{
+  overflow-y: hidden;
+  margin: 0;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border: 2px solid red;
+}
+.MemberOnlineContainer span
+{
+  height: auto;
+  width: 10px;
+  border-radius: 50%;
+  background-color: #2dfb97;
+}
+.friends-list li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
 }
 .friends-list > li > p {
   display: flex;
 }
-
 p {
   font-size: 24px;
   margin: 0;
 }
 .CopyButton {
   user-select: auto;
-  border: 2px solid red;
+  transition: background-color 0.2s, color 0.2s;
+  font-weight: bold;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .CopyButton:hover {
-  background-color: black;
+  background-color: #161e2f;
+  color: #d9d9d9;
   cursor: pointer;
 }
 /* Animation styles */
