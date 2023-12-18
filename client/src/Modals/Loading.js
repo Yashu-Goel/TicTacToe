@@ -146,9 +146,9 @@ const Loading = () => {
               <div className="MemberOnlineContainer">
                 <div className="NumberOfPlayers">
                   <span className="green-dot"></span>
-                  <span>{onlineFriends.length}</span> {/*calculate number of tables*/}
+                  <span>{onlineFriends.length}</span>
                 </div>
-                <span>members online</span>
+                <span>Members online</span>
               </div>
               {onlineFriends.map((friend, index) => (
                 <li key={index}>

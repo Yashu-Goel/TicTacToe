@@ -1,6 +1,21 @@
 import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 import "./MessagePop.css";
 import Send from "../Assets/Send";
+const recommendedChats = [
+  "",
+  "Well played!",
+  "Play again?",
+  "Great job!",
+  "Nice move!",
+  "You're on fire!",
+  "Impressive!",
+  "Smooth moves!",
+  "Victory is near!",
+  "Masterful play!",
+  "Awesome strategy!",
+  "You're unstoppable!",
+  "Top-notch!",
+];
 
 const OpponentName = ({ name }) => {
   return (
@@ -63,6 +78,17 @@ const MessagePop = ({ messageList, sendMessage, id, gameData }) => {
                 <p className="message-content">{message.text}</p>
                 <p className="message-time">{message?.time}</p>
               </div>
+            ))}
+          </div>
+          <div className="recommeded-chats">
+            {recommendedChats.map((chat, index) => (
+              <p
+                key={index}
+                className="chat-item"
+                onClick={() => sendMessage(chat)}
+              >
+                {chat}
+              </p>
             ))}
           </div>
           <div className="message-input">

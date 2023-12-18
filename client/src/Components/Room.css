@@ -11,35 +11,20 @@
 .RoomCodeContainer {
   font-size: 3rem;
   font-family: "Open Sans", sans-serif;
-  /* background: linear-gradient(to right, #1400ff, #dc00ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
   color: #d9d9d9;
   text-decoration: underline;
   position: relative;
+  letter-spacing: 1px;
   margin-top: 2%;
 }
-/* .RoomCodeContainer:before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 5px;
-  background: linear-gradient(to right, #1400ff, #dc00ff);
-  z-index: 1;
-  border-radius: 5px;
-} */
 
 .GridContainer {
-  width: 90%;
-  max-width: 35rem;
+  width: 30rem;
   border-radius: 1rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
   aspect-ratio: 1/1;
-  /* background-color: #0057b3; */
-  z-index: 10;
 }
 
 .box {
@@ -55,10 +40,57 @@
   color: #161e2f;
   font-family: "Open Sans", sans-serif;
   border: 2px solid #161e2f;
+  border-radius: 5px;
 }
 .box[disabled] {
-  background-color: #d9d9d9;
+  background-color: rgba(128, 128, 128, 0.454);
   pointer-events: none;
+}
+
+.choose-your-symbol {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.choose-your-symbol > div:nth-child(1) {
+  background-color: #d9d9d9;
+  padding: 5px 15px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+}
+.choose-your-symbol > div:nth-child(2) {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px 15px;
+}
+.choose-your-symbol > div:nth-child(2) div {
+  background-color: #d9d9d9;
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  width: 37.5px;
+  height: 42px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.choose-your-symbol > div:nth-child(2) div p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+.selected-symbol {
+  background-color: gray !important;
+  color: white;
+}
+.current-chance {
+  background-color: #d9d9d9;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  padding: 5px 15px;
   border-radius: 5px;
 }
 .PlayerText p {
@@ -69,6 +101,7 @@
   padding: 0.5rem;
   background: -webkit-linear-gradient(180deg, #1400ff, #dc00ff);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-stroke: 4px transparent;
   color: #b6c1ff;
 }
@@ -80,21 +113,13 @@
   }
 }
 
-/* from my sample code ui ... */
 .start-game-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   font-family: Arial, sans-serif;
+  margin: 30px 0px;
   gap: 10px;
-}
-.rightbar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
 }
 .leftBar {
   position: relative;
@@ -125,22 +150,20 @@ input {
   border-radius: 5px;
 }
 
-
-
-
 .loader {
   font-size: 24px;
   margin-bottom: 20px;
 }
 
 .game-board {
-  /* border: 2px solid #333; */
   /* padding: 20px; */
+  /* border: 1px solid white; */
   border-radius: 8px;
   /* background-color: #f0f0f0; */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 40px;
   align-items: center;
 }
 
@@ -174,7 +197,6 @@ input {
   cursor: pointer;
   transition: background-color 0.2s;
 }
-
 
 /* Add styles for "me" and "opponent" */
 .me {
@@ -283,7 +305,7 @@ p.badge {
 }
 
 .avatar.me {
-  border: 2px solid #65FF00;
+  border: 2px solid #65ff00;
 }
 
 .name {
@@ -292,8 +314,6 @@ p.badge {
   font-size: 1.4rem;
   color: #d9d9d9;
 }
-
-
 
 .vs {
   font-size: 2em;
