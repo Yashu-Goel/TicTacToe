@@ -144,8 +144,11 @@ const Loading = () => {
           ) : (
             <ol className="friends-list">
               <div className="MemberOnlineContainer">
-                <span>&nbsp;&nbsp;&nbsp;</span>
-                <p>members online</p>
+                <div className="NumberOfPlayers">
+                  <span className="green-dot"></span>
+                  <span>{onlineFriends.length}</span> {/*calculate number of tables*/}
+                </div>
+                <span>members online</span>
               </div>
               {onlineFriends.map((friend, index) => (
                 <li key={index}>

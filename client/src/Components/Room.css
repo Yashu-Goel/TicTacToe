@@ -14,11 +14,12 @@
   /* background: linear-gradient(to right, #1400ff, #dc00ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
-  color: #0000ff;
-  /* text-decoration: underline; */
+  color: #d9d9d9;
+  text-decoration: underline;
   position: relative;
+  margin-top: 2%;
 }
-.RoomCodeContainer:before {
+/* .RoomCodeContainer:before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -28,14 +29,12 @@
   background: linear-gradient(to right, #1400ff, #dc00ff);
   z-index: 1;
   border-radius: 5px;
-}
+} */
 
 .GridContainer {
   width: 90%;
   max-width: 35rem;
-  background-color: rgba(255, 255, 255, 0.15);
   border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.25);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   aspect-ratio: 1/1;
@@ -44,7 +43,7 @@
 }
 
 .box {
-  background-color: #0057b3;
+  background-color: #d9d9d9;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,13 +52,14 @@
   aspect-ratio: 1/1;
   cursor: pointer;
   font-size: 4rem;
-  color: white;
+  color: #161e2f;
   font-family: "Open Sans", sans-serif;
-  border: 2px solid white;
+  border: 2px solid #161e2f;
 }
 .box[disabled] {
-  background-color: #0057b37d;
+  background-color: #d9d9d9;
   pointer-events: none;
+  border-radius: 5px;
 }
 .PlayerText p {
   font-size: 2rem;
@@ -112,7 +112,6 @@
   text-align: center;
   padding: 20px;
   background-color: #f4f4f4;
-  border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 2px #ccc;
   width: 300px;
@@ -126,19 +125,8 @@ input {
   border-radius: 5px;
 }
 
-button {
-  /* background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer; */
-}
 
-button:hover {
-  /* background-color: #0056b3; */
-}
-/* StartGame.css */
+
 
 .loader {
   font-size: 24px;
@@ -190,7 +178,7 @@ button:hover {
 
 /* Add styles for "me" and "opponent" */
 .me {
-  color: #00f; /* Blue color for "me" */
+  color: #f0f0f0; /* Blue color for "me" */
   font-weight: bold;
   margin: 0;
 }
@@ -287,25 +275,29 @@ p.badge {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #555;
-  color: white;
+  background: #d9d9d9;
+  color: #161e2f;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .avatar.me {
-  border: 2px solid #58d8a3;
+  border: 2px solid #65FF00;
 }
 
 .name {
   margin-left: 10px;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: #d9d9d9;
 }
 
+
+
 .vs {
-  font-size: 1.2em;
+  font-size: 2em;
   margin: 0 1em;
   font-weight: 800;
-  color: #999;
+  color: #d9d9d9;
 }

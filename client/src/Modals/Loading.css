@@ -91,18 +91,33 @@
   overflow-y: hidden;
   margin: 0;
   position: absolute;
-  top: 90%;
+  top: 30%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  border: 2px solid red;
+
 }
-.MemberOnlineContainer span
-{
-  height: auto;
+.MemberOnlineContainer{
+  display: flex;
+  justify-content: center;
+}
+.NumberOfPlayers{
+  display: flex;
+  color: #65FF00;
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.green-dot {
+  display: inline-block;
   width: 10px;
+  height: 10px;
+  background-color: #65FF00;
+  display: flex;
+  justify-content: space-between;
   border-radius: 50%;
-  background-color: #2dfb97;
+  margin-right: 5px; /* Adjust margin as needed */
 }
 .friends-list li{
   display: flex;

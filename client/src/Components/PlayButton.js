@@ -41,7 +41,7 @@ const PlayButtons = ({
         </div>
       )}
 
-      {showEnterRoom && userNameInput && (
+      {/* {showEnterRoom && userNameInput && (
         <button
           id="playButton"
           className="play-button friend"
@@ -49,7 +49,7 @@ const PlayButtons = ({
         >
           Play with Friend
         </button>
-      )}
+      )} */}
     </div>
   );
 };

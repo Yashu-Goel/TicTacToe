@@ -34,8 +34,6 @@
   font-weight: bold;
   color: #161e2f;
   transition: background-color 0.2s, color 0.2s;
-   
-
 }
 .HomeButtons button:hover{
   cursor: pointer;
@@ -52,7 +50,7 @@
   padding: 0.8rem 1.5rem;
   margin: 10px;
   border-radius: 10px;
-  background-color: #d9d9d9;
+  background-color: #FAF9F6;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
   width: 30rem;
@@ -75,7 +73,7 @@
 }
 .InputBox input::placeholder
 {
-  color: #161e2f;
+  color: #161e2f9c;
 
 }
 /* Use Color Code: #1e00ff (Blue)

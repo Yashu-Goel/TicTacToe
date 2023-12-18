@@ -5,7 +5,7 @@ import Send from "../Assets/Send";
 const OpponentName = ({ name }) => {
   return (
     <div className="opponent-name" style={{ textAlign: "center" }}>
-      <strong style={{ color: "white", letterSpacing: "1px" }}>
+      <strong style={{ color: "#d9d9d9", letterSpacing: "1px" }}>
         {"Chats"}
       </strong>
     </div>
@@ -83,7 +83,7 @@ const MessagePop = ({ messageList, sendMessage, id, gameData }) => {
                 setMessage("");
               }}
             >
-              <Send color="#d11b2a" size="2em" />
+              <Send color="#161e2f" size="2em" />
             </button>
           </div>
         </div>

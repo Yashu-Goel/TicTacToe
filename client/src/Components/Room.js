@@ -134,7 +134,7 @@ const Room = () => {
           theme: "colored",
           style: {
             background: "linear-gradient(to left, #3f5efb, #fc466b)",
-            color: "#fff",
+            color: "#d9d9d9",
             fontSize: "1.1rem",
             fontWeight: 500,
             padding: "1rem 2rem",
@@ -252,7 +252,9 @@ const Room = () => {
                       </div>
 
                       <div className="name">
-                        {gameData.player1 === socket.id ? "You" : "Opponent"}
+                        <span>
+                          {gameData.player1 === socket.id ? "You" : "Opponent"}
+                        </span>
                       </div>
                     </div>
 

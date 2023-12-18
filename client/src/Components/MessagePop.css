@@ -6,7 +6,7 @@
 .popup {
   width: 350px;
   border-radius: 15px;
-  box-shadow: 0px 0px 10px 3px rgba(202, 39, 39, 0.61);
+  box-shadow: 0px 0px 10px 3px #d9d9d9e4;
   position: absolute;
   right: 3%;
   bottom: 14%;
@@ -21,7 +21,7 @@
   color: white;
   /* border-bottom: 2px solid rgba(0, 0, 0, 0.552); */
   /* background-color: white; */
-  background-color: #d11b2a;
+  background-color: #161e2f;
   padding: 15px 10px;
   /* border-radius: 5px; */
 }
@@ -58,14 +58,14 @@
 }
 
 .sent {
-  background-color: #d02230;
+  background-color: #161e2f;
   align-self: flex-end;
-  color: white;
+  color: #d9d9d9;
 }
 .received {
   align-self: flex-start;
-  background-color: white;
-  color: black;
+  background-color: #161e2f;
+  color: #d9d9d9;
 }
 
 .message-content {
@@ -75,6 +75,7 @@
   margin: 0;
   text-align: left;
   /* font-weight: bold; */
+
 }
 .message-time {
   font-size: 10px;
@@ -98,7 +99,7 @@
   padding: 10px;
   background-color: #ffffff;
   border-radius: 10px;
-  outline: 2px solid #d11b2a33;
+  outline: 2px solid #161e2f7b;
   border: none;
   font-size: 16px;
   font-weight: bold;
@@ -109,7 +110,7 @@
 }
 .message-input input:focus {
   border: none;
-  outline: 2px solid #d11b2a;
+  outline: 2px solid #161e2fc0;
 }
 .message-input input:focus::placeholder {
   color: rgb(126, 126, 126);
@@ -131,7 +132,7 @@
   right: 2%;
   bottom: 2%;
   font-size: 6rem;
-  color: #0000ff;
+  color: #d9d9d9;
   transition: transform 0.1s;
 }
 
